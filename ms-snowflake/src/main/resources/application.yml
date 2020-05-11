@@ -1,0 +1,6 @@
+server:
+  port: 9299
+
+spring:
+  application:
+    name: snowflake-service

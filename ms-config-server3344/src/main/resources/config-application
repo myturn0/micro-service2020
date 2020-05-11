@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+spring: #开发环境
+  profiles: dev
+  application:
+    name: ms-config-dev
+---
+spring: #测试环境
+  profiles: test
+  application:
+    name: ms-config-test
+# 必须保存为UTF-8格式

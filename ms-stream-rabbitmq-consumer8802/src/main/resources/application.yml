@@ -1,0 +1,31 @@
+server:
+  port: 8802
+
+spring:
+  application:
+    name: ms-stream-consumer
+  cloud:
+    stream:
+      binders: # 在此处配置要绑定的rabbitmq的配置信息
+        defaultRabbit: # 表示定义的名称，用于binging整合
+          type: rabbit # 消息组件类型
+          environment: # 设置rabbitmq的相关的环境配置
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+      bindings: # 服务的整合处理
+        input: # 这个名字是一个通道的名称
+          destination: studyExchange # 表示要输出的消息的目的地，要使用的Exchange的名称定义
+          content-type: application/json # 设置消息类型，本次为json，文本则设置为"text/plain"
+          binder: defaultRabbit # 设置要绑定的消息服务的具体设置
+          group: grouplyy1
+    #注册服务
+    consul:
+      host: localhost
+      post: 8500
+      discovery:
+        # hostname: 127.0.0.1
+        service-name: ${spring.application.name}

@@ -1,0 +1,14 @@
+server:
+  port: 8012
+
+spring:
+  application:
+    name: ms-provider-consul-payment
+  # 把服务注册进consul
+  cloud:
+    consul:
+      host: localhost
+      post: 8500
+      discovery:
+        # hostname: 127.0.0.1
+        service-name: ${spring.application.name}

@@ -1,0 +1,22 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: ms-nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+#        server-addr: localhost:8848 # nacos服务注册中心地址
+        server-addr: localhost:1111 # nginx的地址，通过nginx转发给nacos集群
+      config:
+#        server-addr: localhost:8848 # nacos配置中心地址
+        server-addr: localhost:1111 # nginx的地址，通过nginx转发给nacos集群
+        file-extension: yaml # 指定yaml格式的配置，以前springconfig时，写在github上
+        namespace: 6fd79c9f-4f7c-4b4e-a612-53ba397abd48
+        group: DEV_GROUP
+
+# 以下是查找规则，具体查看nacos.io官网
+# ${prefix}-${spring.profile.active}.${file-extension}
+# 其中，prefix默认值是spring.application.name
+# 根据以上规则，本module的会在nacos配置中心查找：ms-nacos-config-client-dev.yaml文件

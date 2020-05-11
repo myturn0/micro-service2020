@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    config:
+      # 这里是需要从github上读取的资源的名称，注意，没有yml后缀
+      name: application-client2
+      profile: dev
+      label: master
+      # 通过spring-cloud-config来查找github地址
+      uri: http://localhost:3344
+  # rabbitmq相关配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+#动态刷新配置 ---需要忽略权限拦截
+#management:
+#  security:
+#    enabled: false
+
+# 暴露监控断点，需要pom中加入actuator包
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #refresh

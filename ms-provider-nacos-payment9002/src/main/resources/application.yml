@@ -1,0 +1,17 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: ms-provider-nacos
+  cloud:
+    nacos:
+      discovery:
+#        server-addr: localhost:8848 # nacos地址
+        server-addr: localhost:1111 # nginx的地址，通过nginx转发给nacos集群
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
